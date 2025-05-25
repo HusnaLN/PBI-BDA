@@ -1,11 +1,7 @@
 # PBI-BDA
 Kumpulan query yang digunakan untuk preprocessing data dalam Project Based Internship oleh Rakamin dan Kimia Farma (sebagai Big Data Analyst)
 
-# 1. Import data  : 1) Final Transaction (1kf_final_transaction`),
-#                   2) Kantor Cabang (`kf_kantor_cabang`),
-#                   3) Product (`kf_product`), dan
-#                   4) Inventory (`kf_inventory`)
-# ke Google BigQuery
+# 1. Import data  : Final Transaction (`kf_final_transaction`), Kantor Cabang (`kf_kantor_cabang`), Product (`kf_product`), dan Inventory (`kf_inventory`) ke Google BigQuery
 
 # 2. Mencari informasi awal untuk setiap data
 
@@ -16,9 +12,7 @@ SELECT COUNT(*) FROM `kimia_farma.kf_kantor_cabang`;
 SELECT COUNT(*) FROM `kimia_farma.kf_product`;
 SELECT COUNT(*) FROM `kimia_farma.kf_inventory`;
 
-## melihat tipe data setiap kolom pada setiap tabel
-## khusus di tabel `kf_final_transaction`, tipe data kolom `date` diubah format penulisannyake YYYY-MM-DD,
-## agar bisa dihitung jumlah baris data nya, dan melakukan operasi lainnya
+## melihat tipe data setiap kolom pada setiap tabel khusus di tabel `kf_final_transaction`, tipe data kolom `date` diubah format penulisannyake YYYY-MM-DD, agar bisa dihitung jumlah baris data nya, dan melakukan operasi lainnya
 
 CREATE OR REPLACE TABLE `kimia_farma.kf_final_transaction_converted` AS
 SELECT
@@ -35,12 +29,11 @@ FROM
 
 # 3. Membuat `tabel_analisa`
 
-## `tabel_analisa` terdiri dari 13 kolom gabungan dari keempat tabel, serta 4 kolom tambahan
-## (tahun, persentase_gross_laba, nett_sales, nett_profit) 
-## `tahun` : tahun transaksi dilakukan
-## `persentase_gross_laba` : persentase laba yang seharusnya diterima dari obat
-## `nett_sales` : harga setelah diskon (actual_price x (1-discount_percentage))
-## `nett_profit` : keuntungan yang diperoleh Kimia Farma (nett_sales x persentase_gross_laba)
+## `tabel_analisa` terdiri dari 13 kolom gabungan dari keempat tabel, serta 4 kolom tambahan (tahun, persentase_gross_laba, nett_sales, nett_profit) 
+### `tahun` : tahun transaksi dilakukan
+### `persentase_gross_laba` : persentase laba yang seharusnya diterima dari obat
+### `nett_sales` : harga setelah diskon (actual_price x (1-discount_percentage))
+### `nett_profit` : keuntungan yang diperoleh Kimia Farma (nett_sales x persentase_gross_laba)
 
 CREATE OR REPLACE TABLE `rakamin-kf-analytics-460003.kimia_farma.tabel_analisa` AS
 
@@ -166,13 +159,11 @@ WHERE
 
 SELECT COUNT(*) FROM `kimia_farma.tabel_analisa`;
 
-## NOTE : kondisi data pada `tabel_analisa` milik saya awalnya ada 672460 baris data, sementara
-## jumlah baris data pada tabel `kf_final_transaction` ada 672458 baris data. Setelah dicek,
-## ternyata di `tabel_analisa` saya ada 2 baris data yang NULL, sehingga dilakukan penghapusan
+### NOTE : kondisi data pada `tabel_analisa` milik saya awalnya ada 672460 baris data, sementara jumlah baris data pada tabel `kf_final_transaction` ada 672458 baris data. Setelah dicek, ternyata di `tabel_analisa` saya ada 2 baris data yang NULL, sehingga dilakukan penghapusan
 
 ## cek tipe data untuk setiap kolom
-## setelah dicek, tipe data kolom `persentase_gross_laba` dan `nett_profit` adalah FLOAT,
-## sehingga dilakukan update tipe data menjadi NUMERIC agar data bisa digunakan nantinya di Google Looker Studio
+
+### setelah dicek, tipe data kolom `persentase_gross_laba` dan `nett_profit` adalah FLOAT, sehingga dilakukan update tipe data menjadi NUMERIC agar data bisa digunakan nantinya di Google Looker Studio
 
 CREATE OR REPLACE TABLE `rakamin-kf-analytics-460003.kimia_farma.tabel_analisa` AS
 SELECT
