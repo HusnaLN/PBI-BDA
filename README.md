@@ -27,6 +27,127 @@ SELECT
 FROM
   `kimia_farma.kf_final_transaction`;
 
+### Informasi awal `kf_final_transaction`
+
+#### Cek tipe data
+
+#### Jumlah baris data
+
+SELECT COUNT(*) FROM `kimia_farma.kf_final_transaction_converted`;
+
+#### Jumlah customer_name, cabang, dan product unik yang terdapat di transaksi
+
+SELECT COUNT(DISTINCT customer_name) FROM `kimia_farma.kf_final_transaction_converted`;
+SELECT COUNT(DISTINCT branch_id) FROM `kimia_farma.kf_final_transaction_converted`;
+SELECT COUNT(DISTINCT product_id) FROM `kimia_farma.kf_final_transaction_converted`;
+
+#### Range data
+
+SELECT MIN(price) FROM `kimia_farma.kf_final_transaction_converted`;
+SELECT MAX(price) FROM `kimia_farma.kf_final_transaction_converted`;
+
+SELECT MIN(discount_percentage) FROM `kimia_farma.kf_final_transaction_converted`;
+SELECT MAX(discount_percentage) FROM `kimia_farma.kf_final_transaction_converted`;
+
+SELECT MIN(rating) FROM `kimia_farma.kf_final_transaction_converted`;
+SELECT MAX(rating) FROM `kimia_farma.kf_final_transaction_converted`;
+
+##### Rata-rata nilai transaksi dan rating transaksi
+
+SELECT AVG(price) FROM `kimia_farma.kf_final_transaction_converted`;
+SELECT AVG(rating) FROM `kimia_farma.kf_final_transaction_converted`;
+
+#### Modus rating, branch_id, product_id
+
+-- rating
+SELECT
+    rating,
+    COUNT(*) AS jml_rating_unik
+FROM
+    `kimia_farma.kf_final_transaction_converted`
+GROUP BY
+    rating
+ORDER BY
+    jml_rating_unik DESC
+LIMIT 1;
+
+-- branch_id
+SELECT
+    branch_id,
+    COUNT(*) AS jml_cabang_unik
+FROM
+    `kimia_farma.kf_final_transaction_converted`
+GROUP BY
+    branch_id
+ORDER BY
+    jml_cabang_unik DESC
+LIMIT 1;
+
+-- product
+SELECT
+    product_id,
+    COUNT(*) AS jml_product_unik
+FROM
+    `kimia_farma.kf_final_transaction_converted`
+GROUP BY
+    product_id
+ORDER BY
+    jml_product_unik DESC
+LIMIT 1;
+
+### Informasi awal `kf_kantor_cabang`
+
+#### Jumlah Baris Data (Header Tidak Terhitung)
+
+SELECT COUNT(*) FROM `kimia_farma.kf_kantor_cabang`;
+
+#### Jumlah unik branch_id, branch_category, branch_name, kota, provinsi
+
+SELECT COUNT(DISTINCT branch_id) FROM  `kimia_farma.kf_kantor_cabang`;
+SELECT COUNT(DISTINCT branch_category) FROM  `kimia_farma.kf_kantor_cabang`;
+SELECT COUNT(DISTINCT branch_name) FROM  `kimia_farma.kf_kantor_cabang`;
+SELECT COUNT(DISTINCT kota) FROM  `kimia_farma.kf_kantor_cabang`;
+SELECT COUNT(DISTINCT provinsi) FROM  `kimia_farma.kf_kantor_cabang`;
+
+#### Rata-rata rating cabang
+
+SELECT AVG(rating)  FROM  `kimia_farma.kf_kantor_cabang`;
+
+### Informasi awal `kf_product`
+
+#### Jumlah baris Data (Header Tidak Terhitung)
+
+SELECT COUNT(*) FROM `kimia_farma.kf_product`;
+
+#### Jumlah unik product_id, product_name, product_category
+
+SELECT COUNT (DISTINCT product_id) FROM `kimia_farma.kf_product`;
+SELECT COUNT (DISTINCT product_name) FROM `kimia_farma.kf_product`;
+SELECT COUNT (DISTINCT product_category) FROM `kimia_farma.kf_product`;
+
+#### Range price
+
+SELECT MIN(price) FROM `kimia_farma.kf_product`;
+SELECT MAX(price) FROM `kimia_farma.kf_product`;
+
+### Informasi awal `kf_inventory`
+
+#### Jumlah Baris Data (Header Tidak Dihitung)
+
+SELECT COUNT(*) FROM `kimia_farma.kf_inventory`;
+
+#### Jumlah unik inventory_id, branch_id, product_id, product_name
+
+SELECT COUNT(DISTINCT inventory_id) FROM `kimia_farma.kf_inventory`;
+SELECT COUNT(DISTINCT branch_id) FROM `kimia_farma.kf_inventory`;
+SELECT COUNT(DISTINCT product_id) FROM `kimia_farma.kf_inventory`;
+SELECT COUNT(DISTINCT product_name) FROM `kimia_farma.kf_inventory`;
+
+#### Range opname_stock
+
+SELECT MIN(opname_stock) FROM `kimia_farma.kf_inventory`;
+SELECT MAX(opname_stock) FROM `kimia_farma.kf_inventory`;
+
 # 3. Membuat `tabel_analisa`
 
 ## `tabel_analisa` terdiri dari 13 kolom gabungan dari keempat tabel, serta 4 kolom tambahan (tahun, persentase_gross_laba, nett_sales, nett_profit) 
