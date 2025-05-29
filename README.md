@@ -1,5 +1,5 @@
 # PBI-BDA
-Kumpulan query yang digunakan untuk preprocessing data dalam Project Based Internship oleh Rakamin dan Kimia Farma (sebagai Big Data Analyst)
+Kumpulan query yang digunakan untuk preprocessing data dan analisis data dalam Project Based Internship oleh Rakamin dan Kimia Farma (sebagai Big Data Analyst)
 
 # 1. Import data ke Google BigQuery :
 ### Final Transaction (`kf_final_transaction`),
