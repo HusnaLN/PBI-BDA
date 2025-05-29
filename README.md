@@ -312,3 +312,17 @@ FROM
 
 SELECT * FROM `kimia_farma.tabel_analisa`
 ORDER BY `date` ASC;
+
+# 5. Lanjutan Kebutuhan Analisis
+
+## cek jumlah cabang di setiap provinsi
+
+SELECT
+    provinsi,
+    COUNT(branch_id) AS jumlah_cabang
+FROM
+    `kimia_farma.kf_kantor_cabang`
+GROUP BY
+    provinsi
+ORDER BY
+    jumlah_cabang DESC;
