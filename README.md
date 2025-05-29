@@ -1,7 +1,11 @@
 # PBI-BDA
 Kumpulan query yang digunakan untuk preprocessing data dalam Project Based Internship oleh Rakamin dan Kimia Farma (sebagai Big Data Analyst)
 
-# 1. Import data  : Final Transaction (`kf_final_transaction`), Kantor Cabang (`kf_kantor_cabang`), Product (`kf_product`), dan Inventory (`kf_inventory`) ke Google BigQuery
+# 1. Import data ke Google BigQuery :
+### Final Transaction (`kf_final_transaction`),
+### Kantor Cabang (`kf_kantor_cabang`),
+### Product (`kf_product`),
+### Inventory (`kf_inventory`)
 
 # 2. Mencari informasi awal untuk setiap data
 
